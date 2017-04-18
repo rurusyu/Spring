@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 쿼리문 만들것임. 매퍼파일만들면 자바에서 참고할때 id를 줘야한다.(네임스페이스) 네임스페이스는 문자열이니깐 아무문자나 줘도되는데, 
+가능한 헷갈릴수 있으니 자바 클래스처럼 이름을 해준다.-->
+
+<mapper namespace="org.zerock.TimeMapper">
+<!-- fullname : org.zerock.TimeMapper.getTime/ 아래는 sql문 날리는 것이고 결과타입에 대해서도 지정을 함. -->
+<select id="getTime" resultType="java.lang.String">
+select now()<!-- 세미콜론 없어야함. 반드시 준수할 것..!!! -->
+
+</select>
+
+
+</mapper>  

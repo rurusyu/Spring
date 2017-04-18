@@ -34,7 +34,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="info" />
+		<priority value="debug" />    <!-- 테스트할때는 기본 값이 info임.debug레벨로 낮춤 -->
 		<appender-ref ref="console" />
 	</root>
 	

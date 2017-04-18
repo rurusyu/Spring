@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?><!-- xmlns 네임스페이스 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
@@ -9,6 +13,23 @@
 		<property name="username" value="bit92"></property>
 		<property name="password" value="bit92"></property>
 	</bean>
+	
+	<!-- mybatis 데이터소스 연결해주고 SessionFactory해줌 이제 설정파일 두개 만들러 갈꺼임. 설정파일, SQL파일-->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"></property>
+	<property name="configLocation" value="classpath:/mybatis-config.xml"></property> <!-- 클래스 패스이용하면 기본이  src/main/resource 가리킴. 이제 테스트단계임.-->
+	<property name="mapperLocations" value="mappers/*.xml"></property><!--mapper폴더 밑에 다 넣을 수 있게 , mybatis의 설정을 여기로 옮겨옴 -->
+	</bean>
+	
+	<bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg><!--try~catch없애주는애임  -->
+	
+	</bean>
+	
+<!-- 	<bean id="dao" class="org.zerock.persistence.TimeDAO">
+	<property name="session" ref="sessionTemplate"></property>
+	</bean> -->
+
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
@@ -24,6 +45,10 @@
 			
 		</constructor-arg> -->
 		</bean>
-		
+
+	<context:annotation-config></context:annotation-config> <!-- @인식하겠다 의미임. -->
+	<context:component-scan base-package="org.zerock.persistence"></context:component-scan>
+
+
 		
 </beans>

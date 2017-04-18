@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class MySQLConnectionTest {
-	//bad code
+	//bad code 메인으로 만든거라 Junit테스트가 아님.
 	public static void main(String[] args)throws Exception {
 		
 		// MySQL DRIVER 5.X com.mysql.jdbc.Driver
