@@ -9,6 +9,8 @@
  <!-- 지워도 에러는 없음 <mappers>
   <mapper resource="mappers/TimeMapper.xml"/>
   </mappers> 이 설정을 스프링쪽으로 옮김-->
-  
+  <typeAliases>
+	<package name="org.zerock.domain"/>  
+  </typeAliases>
   
   </configuration>

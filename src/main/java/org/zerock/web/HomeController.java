@@ -39,7 +39,7 @@ public class HomeController {
 	@Inject
 	private DataSource ds;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET) 
 	public String home(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");

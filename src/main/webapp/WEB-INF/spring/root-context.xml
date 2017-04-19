@@ -8,17 +8,18 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://192.168.0.17:3306/sample_db?useSSL=false"></property>
-		<property name="username" value="bit92"></property>
-		<property name="password" value="bit92"></property>
+<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property> -->
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="url" value="jdbc:log4jdbc:mysql://192.168.0.8:3306/sample_db?useSSL=false"></property>
+		<property name="username" value="rurusyu"></property>
+		<property name="password" value="rurusyu"></property>
 	</bean>
 	
 	<!-- mybatis 데이터소스 연결해주고 SessionFactory해줌 이제 설정파일 두개 만들러 갈꺼임. 설정파일, SQL파일-->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	<property name="dataSource" ref="dataSource"></property>
 	<property name="configLocation" value="classpath:/mybatis-config.xml"></property> <!-- 클래스 패스이용하면 기본이  src/main/resource 가리킴. 이제 테스트단계임.-->
-	<property name="mapperLocations" value="mappers/*.xml"></property><!--mapper폴더 밑에 다 넣을 수 있게 , mybatis의 설정을 여기로 옮겨옴 -->
+	<property name="mapperLocations" value="classpath:/mappers/*.xml"></property><!--mapper폴더 밑에 다 넣을 수 있게 , mybatis의 설정을 여기로 옮겨옴 -->
 	</bean>
 	
 	<bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
